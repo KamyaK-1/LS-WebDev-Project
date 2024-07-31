@@ -3,12 +3,21 @@
     Tweets
 {% endblock %}
 {% block content %}
-    <h1 class="text-center mt-4">Welcome to Tweetkar!!!</h1>
-    <h2>{%if form.instance.pk%} Edit Tweet {%else%} Create Tweet {%endif%} </h2>
-    <form method="POST" enctype = "multipart/form-data" class="form">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-warning">Submit</button>
-    </form>
-    <a href="{% url 'tweet_list' %}">Home</a>
+<h1 class="text-center mt-4">Welcome to Tweetkar!!!</h1>
+<h2>{% if form.instance.pk %} Edit Tweet {% else %} Create Tweet {% endif %}</h2>
+<form method="POST" enctype="multipart/form-data" class="container mt-4">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.text.label_tag }}
+        {{ form.text }}
+    </div>
+    <br>
+    <div class="form-group">
+        {{ form.photo.label_tag }}
+        {{ form.photo }}
+    </div>
+    <br>
+    <button type="submit" class="btn btn-warning">Submit</button>
+</form>
+<a href="{% url 'tweet_list' %}" class="btn btn-link mt-3">Home</a>
 {% endblock %}
